@@ -1,68 +1,80 @@
-const OBJECTS = ['rock', 'paper', 'scissors'];
-const ROUNDS = 5;
+const OBJECTS = ["rock", "paper", "scissors"];
+let playerScore = 0;
+let compScore = 0;
+const buttons = document.querySelectorAll("button");
 
+// helper functions
 function getComputerChoice() {
-    const idx = getRandomInt(0, 2);
-    const chosen = OBJECTS[idx];
-    return chosen;
+  const idx = getRandomInt(0, 2);
+  const chosen = OBJECTS[idx];
+  return chosen;
 }
 
 function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
-function playRound(playerSelection, computerSelection) {
-    const winnerVsLoser = {
-        'rock': 'scissors',
-        'paper': 'rock',
-        'scissors': 'paper'
-    }
-    let winner = '';
-
-    if (winnerVsLoser[playerSelection] === computerSelection) {
-        winner = 'player';
-    }  else if (winnerVsLoser[computerSelection] === playerSelection) {
-        winner = 'computer';
-    }
-    return winner;
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function game() {
-    let playerScore = 0;
-    let compScore = 0;
-    let roundResult = '';
+function disableButtons() {
+  buttons.forEach((elem) => {
+    elem.disabled = true;
+  });
+}
 
-    for (let i = 0; i < ROUNDS; i++) {
-        let playerSelection = prompt('Enter your choice:').toLowerCase();
-        let computerSelection = getComputerChoice();
-        let winner = playRound(playerSelection, computerSelection);
+buttons.forEach((button) => {
+  button.addEventListener("click", playRound);
+});
 
-        if (winner === 'player') {
-            roundResult = `You win! ${playerSelection} beats ${computerSelection}.`;
-            playerScore++;
-        } else if (winner === 'computer') {
-            roundResult = `You lose! ${computerSelection} beats ${playerSelection}.`;
-            compScore++;
-        } else {
-            roundResult = "It's a tie!";
-        }
+function playRound(event) {
+  let playerSelection = this.id;
+  let computerSelection = getComputerChoice();
+  const winnerVsLoser = {
+    rock: "scissors",
+    paper: "rock",
+    scissors: "paper",
+  };
+  let winner = "";
+  let roundResult = "";
+  let finalResult = "";
 
-        console.log(roundResult);
-        console.log(`PLAYER: ${playerScore} | COMPUTER: ${compScore}`);
-    } 
+  let result = document.querySelector(".result");
+  if (result.lastElementChild) result.removeChild(result.lastElementChild);
 
-    if (playerScore > compScore) {
-        console.log('Player wins!');
-    } else if (compScore > playerScore) {
-        console.log('Computer wins!');
+  if (winnerVsLoser[playerSelection] === computerSelection) {
+    winner = "player";
+  } else if (winnerVsLoser[computerSelection] === playerSelection) {
+    winner = "computer";
+  }
+
+  if (playerScore !== 5 && compScore !== 5) {
+    if (winner === "player") {
+      roundResult = `You win! ${capitalize(
+        playerSelection
+      )} beats ${computerSelection}.`;
+      playerScore++;
+    } else if (winner === "computer") {
+      roundResult = `You lose! ${capitalize(
+        computerSelection
+      )} beats ${playerSelection}.`;
+      compScore++;
     } else {
-        console.log("There is no winner!");
+      roundResult = "It's a tie!";
     }
+  } else {
+    disableButtons();
+  }
+
+  finalResult =
+    playerScore === 5 ? "YOU WIN." : compScore === 5 ? "COMPUTER WINS!" : "";
+
+  const tally = `Player score: ${playerScore} | Computer score: ${compScore}`;
+
+  const p = document.createElement("p");
+  p.innerHTML = `${roundResult} <br> ${tally} <br> ${finalResult}`;
+  result.appendChild(p);
 }
-
-game();
-
-
