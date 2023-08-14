@@ -2,16 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/f19b25fb2d.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <h1>Rock Paper Scissors</h1>
+    <section>
+      <header>
+        <h1>Rock Paper Scissors</h1>
+      </header>
 
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div class="result"></div>
+      <div class="display">
+        <div class="player">
+          <h2 class="name">Player</h2>
+          <i id="player-choice"></i>
+        </div>
+        <div class="score-card">
+          <p>
+            <strong id="player-score">0</strong> -
+            <strong id="comp-score">0</strong>
+          </p>
+        </div>
+        <div class="computer">
+          <h2 class="name">Computer</h2>
+          <i id="computer-choice"></i>
+        </div>
+      </div>
+      <div class="result-board">
+        <p id="round-result"></p>
+      </div>
+      <div class="choices">
+        <i class="far fa-hand-rock" id="rock"></i>
+        <i class="far fa-hand-paper" id="paper"></i>
+        <i class="far fa-hand-scissors" id="scissors"></i>
+      </div>
+      <span class="overlay"></span>
+      <div class="modal-box">
+        <h2 id="final-result"></h2>
+        <button id="restart-game">Restart Game</button>
+      </div>
+    </section>
   </body>
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 </html>
