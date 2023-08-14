@@ -1,0 +1,234 @@
+@font-face {
+  font-family: "Hurry Up";
+  src: url("fonts/HurryUp-Regular.eot");
+  src: url("fonts/HurryUp-Regular.eot?#iefix") format("embedded-opentype"),
+    url("fonts/HurryUp-Regular.woff2") format("woff2"),
+    url("fonts/HurryUp-Regular.woff") format("woff"),
+    url("fonts/HurryUp-Regular.ttf") format("truetype"),
+    url("fonts/HurryUp-Regular.svg#HurryUp-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+*:not(i) {
+  font-family: "Hurry Up";
+}
+
+section {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #2c2c2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  height: 280px;
+}
+
+header {
+  padding: 40px 20px;
+}
+
+header h1 {
+  display: inline;
+  padding: 0px 20px;
+  font-size: 70px;
+  color: azure;
+  text-align: center;
+}
+
+.player h2 {
+  font-size: 45px;
+  color: #eea177;
+}
+
+.computer h2 {
+  font-size: 45px;
+  color: #5f73a8;
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  gap: 100px;
+}
+
+.lose-color {
+  color: #e00077;
+}
+
+.win-color {
+  color: #37dbbd;
+}
+
+.tie-color {
+  color: #fece00;
+}
+
+.choices i {
+  font-size: 130px;
+  font-weight: 50;
+  color: seashell;
+  transition: 0.2s;
+}
+
+.far.fa-hand-rock:hover {
+  transform: scale(1.1);
+  color: #fece00;
+  cursor: pointer;
+}
+
+.far.fa-hand-paper:hover {
+  transform: scale(1.1);
+  color: #f90076;
+  cursor: pointer;
+}
+
+.far.fa-hand-scissors:hover {
+  transform: scale(1.1);
+  color: #37dbbd;
+  cursor: pointer;
+}
+
+.score-card {
+  font-size: 38px;
+  color: #1b1212;
+  background-color: #e00077;
+  border: 8px solid;
+  box-shadow: 5px 10px azure;
+  width: 150px;
+  height: 60px;
+}
+
+.score-card p {
+  text-align: center;
+}
+
+.player,
+.computer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.player i,
+.computer i {
+  font-size: 100px;
+  margin-top: 20px;
+}
+
+#round-result {
+  font-size: 20px;
+  color: azure;
+}
+
+#final-result {
+  font-size: 40px;
+  color: azure;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-box {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 15px;
+  background-color: #642c53;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  padding: 50px 30px;
+  transition: all 0.3s ease;
+}
+
+#restart-game {
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  padding: 2px;
+  width: 160px;
+}
+
+section.active .overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+section.active .modal-box {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media only screen and (max-width: 599px) {
+  header h1 {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .display {
+    margin-top: 50px;
+    gap: 30px;
+  }
+
+  .player h2,
+  .computer h2 {
+    font-size: 25px;
+  }
+
+  .score-card {
+    width: 95px;
+    font-size: 25px;
+    height: 50px;
+  }
+
+  .player i,
+  .computer i {
+    font-size: 70px;
+    margin-top: 50px;
+  }
+
+  .choices {
+    gap: 50px;
+  }
+
+  .choices i {
+    font-size: 80px;
+  }
+
+  .modal-box {
+    padding: 30px 20px;
+  }
+}
